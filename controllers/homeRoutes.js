@@ -26,18 +26,18 @@ router.get('/',  (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+router.get('/Event/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const eventData = await Event.findByPk(req.params.id, {
       include: [
         {
-          model: User,
+          model: Event,
           attributes: ['name'],
         },
       ],
     });
 
-    const project = projectData.get({ plain: true });
+    const project = eventData.get({ plain: true });
 
     res.render('project', {
       ...project,
