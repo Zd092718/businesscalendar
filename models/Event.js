@@ -15,13 +15,6 @@ Event.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    date_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'date',
-        key: 'id',
-      },
-    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
