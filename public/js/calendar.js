@@ -1,6 +1,6 @@
-let date = document.querySelector('date');
-let day =  document.querySelector('day');
-let month =  document.querySelector('month');
+let dateEl = document.querySelector('.date');
+let dayEl =  document.querySelector('.day');
+let monthEl =  document.querySelector('.month');
 
 function startTime() {
     var weekday = new Array();
@@ -35,16 +35,16 @@ function startTime() {
   
     m = checkTime(m);
     s = checkTime(s);
-    date.innerHTML =
+    dateEl.innerHTML =
     d;
-    day.innerHTML =
+    dayEl.innerHTML =
     wd;
-    month.innerHTML =
-    mt + "/" + y;
-    
-    var t = setTimeout(startTime, 500);
+    monthEl.innerHTML =
+    mt + " " + y;
 }
 function checkTime(i) {
     if (i < 10) {i = "0" + i};
     return i;
 }
+
+startTime();
