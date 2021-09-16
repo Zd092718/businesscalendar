@@ -33,7 +33,7 @@ const eventForm = async (e) => {
         console.log(event,date)
         const res = await fetch ('/api/calendar/event',{
             method: "POST",
-            body: JSON.stringify({date, event}),
+            body: JSON.stringify({day_of_month:moment(date).date(), event_name:event}),
             headers: { 'Content-Type': 'application/json' },
         });
         if(res.ok){
