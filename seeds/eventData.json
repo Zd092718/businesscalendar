@@ -1,14 +1,18 @@
 [
   {
+    "day_of_month": "12",
     "event_name": "Work on database"
   },
   {
+    "day_of_month": "9",
     "event_name": "Meeting with Jeff"
   },  
   {
+    "day_of_month": "7",
     "event_name": "Project Deadline"
   },
   {
+    "day_of_month": "5",
     "event_name": "Walk in the park"
   }
 ]
