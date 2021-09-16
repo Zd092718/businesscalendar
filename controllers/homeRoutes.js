@@ -17,6 +17,24 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+router.get('/Event', async (req, res) => {
+  try {
+    // Get all projects and JOIN with user data
+    const eventData = await Event.findAll();
+
+    // // Serialize data so the template can read it
+    const events = eventData.map((event) => event.get({ plain: true }));
+
+    // res.render("homepage",{events, logged_in: req.session.logged_in});
+    res.json(events)
+  } catch (err) {
+    res.status(500).json(err);
+
+  }
+});
+
+
+
 router.get('/Event/:id', async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id, {

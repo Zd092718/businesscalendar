@@ -20,3 +20,11 @@ async function startTime() {
 
 
 startTime();
+
+async function getEvents(){
+const headers = await fetch('/Event')
+const events = await headers.json();
+console.log(events)
+}
+
+getEvents();
