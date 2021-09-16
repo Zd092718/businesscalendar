@@ -12,8 +12,9 @@ Event.init(
       autoIncrement: true,
     },
     event_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(25),
       allowNull: false,
+      
     },
     user_id: {
       type: DataTypes.INTEGER,
