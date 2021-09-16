@@ -17,8 +17,7 @@ Event.init(
     },
     event_name: {
       type: DataTypes.STRING(25),
-      allowNull: false,
-      
+      allowNull: false,     
     },
     user_id: {
       type: DataTypes.INTEGER,
