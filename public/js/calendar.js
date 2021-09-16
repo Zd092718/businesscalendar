@@ -17,6 +17,33 @@ async function startTime() {
     monthEl.append(now.format("MMMM YYYY"));
     
 }
-
+// const eventForm = () => {
+//     const date = document.querySelector("#date").value.trim();
+//     const event = document.querySelector("#input_text").value.trim();
+//     console.log(event,date)
+// }
 
 startTime();
+
+const eventForm = async (e) => {
+    e.preventDefault();
+    const date = document.querySelector("#date").value.trim();
+    const event = document.querySelector("#input_text").value.trim();
+    if(date&&event){
+        console.log(event,date)
+        const res = await fetch ('/api/calendar/event',{
+            method: "POST",
+            body: JSON.stringify({date, event}),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if(res.ok){
+            document.location.replace('/');
+        }
+        else{
+            alert('Failed to add event');
+        }
+    }
+} 
+document
+    .querySelector('.event-form')
+    .addEventListener('submit', eventForm);
