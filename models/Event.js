@@ -11,6 +11,10 @@ Event.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    day_of_month: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     event_name: {
       type: DataTypes.STRING,
       allowNull: false,
