@@ -1,13 +1,21 @@
 <div id="calendar-wrap">
   <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal close ">
     <div class="modal-content">
       <h4>Modal Header</h4>
       <p>A bunch of text</p>
+      <form>
+        <input id="date" type="text" class="datepicker">
+        <label type="text">Date</label>
+        <input id="input_text" type="text" data-length="10">
+        <label type="text">Title</label>
+      </form>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="" class="modal-close waves-effect waves-green btn-flat">Save</a>
+      </div>  
     </div>
-    {{!-- <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div> --}}
+    
   </div>
     <!-- Modal Trigger -->
   <header>
