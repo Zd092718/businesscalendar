@@ -2,7 +2,16 @@ const router = require('express').Router();
 const { Event } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findAll();
+    res.render(userData)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post('/event', withAuth, async (req, res) => {
   try {
     const newEvent = await Event.create({
       ...req.body,
@@ -11,6 +20,7 @@ router.post('/', withAuth, async (req, res) => {
 
     res.status(200).json(newEvent);
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
 });
