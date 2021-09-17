@@ -8,10 +8,9 @@ router.get('/', withAuth, async (req, res) => {
     const eventData = await Event.findAll();
     const events = eventData.map((event) => event.get({ plain: true }));
 
-    res.render("homepage",{events, logged_in: req.session.logged_in});
+    res.render('homepage', { events, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
-
   }
 });
 
@@ -23,15 +22,12 @@ router.get('/Event', async (req, res) => {
     // // Serialize data so the template can read it
     const events = eventData.map((event) => event.get({ plain: true }));
 
-    // res.render("homepage",{events, logged_in: req.session.logged_in});
-    res.json(events)
+    //res.json list of events for reference
+    res.json(events);
   } catch (err) {
     res.status(500).json(err);
-
   }
 });
-
-
 
 router.get('/Event/:id', async (req, res) => {
   try {
@@ -48,7 +44,7 @@ router.get('/Event/:id', async (req, res) => {
 
     res.render('project', {
       ...project,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
