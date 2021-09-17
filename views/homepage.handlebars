@@ -10,14 +10,15 @@
         <input id="input_text" type="text" class="materialize-textarea" data-length="25">
           <label for="input_text" type="text">Title</label>
         <div class="modal-footer">
-          <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+          <a href="#" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
           <button type="submit" class="modal-close waves-effect waves-green btn-flat">Save</button>
         </div>  
       </form>
     </div>
-    
   </div>
-    
+  {{#each events}}
+    <p>{{this.day_of_month}} {{this.event_name}}</p>
+  {{/each}} 
 
     		<header>
     			<h1 class = "month"></h1>

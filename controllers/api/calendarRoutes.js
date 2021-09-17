@@ -2,10 +2,11 @@ const router = require('express').Router();
 const { Event } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/events', async (req, res) => {
   try {
-    const userData = await User.findAll();
-    res.render(userData)
+    const eventData = await Event.findAll();
+    const events = eventData.map((event) => event.get({ plain: true }));
+    res.json(events)
   } catch (err) {
     res.status(500).json(err);
   }
