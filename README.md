@@ -25,7 +25,7 @@
 
 
 ## About The Project
-Business Calendar
+Work Calendar
 
 ![screenshot](./public/images/calendar_screenshot.png)
 
