@@ -1,13 +1,7 @@
 let dateEl = document.querySelector('.date');
-<<<<<<< HEAD
-let dayEl =  document.querySelector('.day');
-let monthEl =  document.querySelector('.month');
-const hbs = require("Handlebars")
-=======
 let dayEl = document.querySelector('.day');
 let monthEl = document.querySelector('.month');
 let listEl = document.querySelectorAll('li');
->>>>>>> main
 
 async function startTime() {
   var now = moment();
