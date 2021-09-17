@@ -1,6 +1,7 @@
 let dateEl = document.querySelector('.date');
 let dayEl = document.querySelector('.day');
 let monthEl = document.querySelector('.month');
+let listEl = document.querySelectorAll('li');
 
 async function startTime() {
   var now = moment();
@@ -8,8 +9,8 @@ async function startTime() {
   var year = now.year();
   var startOfMonth = moment(now).startOf('month');
   var endOfMonth = moment(now).endOf('month');
-  console.log(startOfMonth);
-  console.log(endOfMonth);
+  // console.log(startOfMonth);
+  // console.log(endOfMonth);
   monthEl.append(now.format('MMMM YYYY'));
 }
 // const eventForm = () => {
@@ -40,13 +41,42 @@ const eventForm = async (e) => {
       alert('Failed to add event');
     }
   }
-};
-document.querySelector('.event-form').addEventListener('submit', eventForm);
-
-async function getEvents() {
   const headers = await fetch('/Event');
   const events = await headers.json();
   console.log(events);
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'left',
+  });
+});
+document.querySelector('.event-form').addEventListener('submit', eventForm);
+
+// Testing area for post
+async function Test() {
+  const headers = await fetch('/Event');
+  const events = await headers.json();
+  const eventData = await events.map((event) => ({
+    html: `<div class='event'>
+  <div class='event-desc'>
+    ${event.event_name}
+  </div>
+</div>`,
+    day_of_month: event.day_of_month,
+  }));
+  console.log(eventData);
+  listEl.forEach((element) => {
+    let cellData = element.id;
+    console.log(cellData);
+    for (let i = 0; i < eventData.length; i++) {
+      const event = eventData[i];
+      if ((event.day_of_month = element.id)) {
+        element.append(event.html);
+      }
+    }
+  });
 }
 
-getEvents();
+Test();
