@@ -4,7 +4,11 @@ const withAuth = require('../../utils/auth');
 
 router.get('/event', async (req, res) => {
   try {
-    const eventData = await Event.findAll();
+    const eventData = await Event.findAll({
+      where: {
+        user_id: req.session.user_id
+      }
+    });
     const events = eventData.map((event) => event.get({ plain: true }));
     res.json(events)
   } catch (err) {
@@ -26,7 +30,7 @@ router.post('/event', withAuth, async (req, res) => {
   }
 });
 
-router.delete('event/:id', withAuth, async (req, res) => {
+router.delete('/event/:id', withAuth, async (req, res) => {
   try {
     const EventData = await Event.destroy({
       where: {
@@ -34,14 +38,11 @@ router.delete('event/:id', withAuth, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-
-    if (!EventData) {
-      res.status(404).json({ message: 'No Event found with this id!' });
-      return;
-    }
+    
 
     res.status(200).json(EventData);
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });

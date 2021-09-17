@@ -3,61 +3,71 @@
     class='btn-floating btn-large waves-effect waves-light red modal-trigger'
     href='#modal1'
   ><i class='material-icons'>add</i></a> }}
-  <div class='fixed-action-btn'>
-    <a class='btn-floating btn-large red modal-trigger' href='#modal1'>
-      <i class='large material-icons'>mode_edit</i>
-    </a>
-    <ul>
-      <li><a class='btn-floating green'><i
-            class='material-icons'
-          >publish</i></a></li>
-      <li><a class='btn-floating blue'><i
-            class='material-icons'
-          >attach_file</i></a></li>
-    </ul>
-  </div>
-
-  <div id='modal1' class='modal close'>
-    <div class='modal-content'>
-      <h4>Add an Event</h4>
-      <p>A bunch of text</p>
-      <form class='event-form'>
-        <input id='date' type='date' />
-        <label for='date' type='text'>Date</label>
-        <input
-          id='input_text'
-          type='text'
-          class='materialize-textarea'
-          data-length='25'
-        />
-        <label for='input_text' type='text'>Title</label>
-        <div class='modal-footer'>
-          <a
-            href='#'
-            class='modal-close waves-effect waves-green btn-flat'
-          >Cancel</a>
-          <button
-            type='submit'
-            class='modal-close waves-effect waves-green btn-flat'
-          >Save</button>
-        </div>
-      </form>
+	<div class='fixed-action-btn'>
+		<a class='btn-floating btn-large red modal-trigger' href='#modal1'>
+			<i class='large material-icons'>add</i>
+		</a>
+		<ul>
+			<li>
+				<a class='btn-floating green modal-trigger' href='#modal2'>
+					<i class='material-icons'>delete</i>
+				</a>
+			</li>
+			<li>
+				<a class='btn-floating blue'>
+					<i class='material-icons'>mode_edit</i>
+				</a>
+			</li>
+		</ul>
+	</div>
+    <div id='modal1' class='modal close'>
+		<div class='modal-content'>
+			<h4>Add an Event</h4>
+			<p>A bunch of text</p>
+			<form id='event-form'>
+				<input id='date' type='date'/>
+				<label for='date' type='text'>Date</label>
+				<input id='input_text' type='text' class='materialize-textarea' data-length='25'/>
+				<label for='input_text' type='text'>Title</label>
+				<div class='modal-footer'>
+					<a href='#' class='modal-close waves-effect waves-green btn-flat'>Cancel</a>
+					<button type='submit' class='modal-close waves-effect waves-green btn-flat'>Save</button>
+				</div>
+			</form>
+		</div>
     </div>
-
-  </div>
+	<div id='modal2' class='modal close'>
+		<div class='modal-content'>
+			<h4>Add an Event</h4>
+			<p>A bunch of text</p>
+			<form id='delete-form'>
+				{{#each events}}
+				
+					<p>{{this.event_name}} </p>
+					<button class="deletebtn" name="{{this.id}}">Delete</button>
+			
+				
+				{{/each}}
+				<div class='modal-footer'>
+					<a href='#' class='modal-close waves-effect waves-green btn-flat'>Cancel</a>
+					<button type='submit' class='modal-close waves-effect waves-green btn-flat'>Delete</button>
+				</div>
+			</form>
+		</div>
+    </div>
 
   <header>
     <h1 class='month'></h1>
   </header>
   <div id='calendar'>
     <ul class='weekdays'>
-      <li>Sunday</li>
-      <li>Monday</li>
-      <li>Tuesday</li>
-      <li>Wednesday</li>
-      <li>Thursday</li>
-      <li>Friday</li>
-      <li>Saturday</li>
+		<li>Sunday</li>
+		<li>Monday</li>
+		<li>Tuesday</li>
+		<li>Wednesday</li>
+		<li>Thursday</li>
+		<li>Friday</li>
+		<li>Saturday</li>
     </ul>
 
     <ul class='days'>
