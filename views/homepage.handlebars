@@ -1,21 +1,21 @@
 <div id="calendar-wrap">
-  <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
-  <div id="modal1" class="modal close ">
-    <div class="modal-content">
-      <h4>Add an Event</h4>
-      <p>A bunch of text</p>
-      <form class="event-form">
-        <input id="date" type="date" >
-          <label for="date" type="text">Date</label>
-        <input id="input_text" type="text" class="materialize-textarea" data-length="25">
-          <label for="input_text" type="text">Title</label>
-        <div class="modal-footer">
-          <a href="#" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
-          <button type="submit" class="modal-close waves-effect waves-green btn-flat">Save</button>
-        </div>  
-      </form>
+    <a class="btn-floating btn-large red modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+    <div id="modal1" class="modal close ">
+        <div class="modal-content">
+            <h4>Add an Event</h4>
+			<p>A bunch of text</p>
+        <form class="event-form">
+			<input id="date" type="date" >
+				<label for="date" type="text">Date</label>
+			<input id="input_text" type="text" class="materialize-textarea" data-length="25">
+				<label for="input_text" type="text">Title</label>
+			<div class="modal-footer">
+				<a href="#" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+				<button type="submit" class="modal-close waves-effect waves-green btn-flat">Save</button>
+			</div>  
+        </form>
     </div>
-  </div>
+   </div>
   {{#each events}}
     <p>{{this.day_of_month}} {{this.event_name}}</p>
   {{/each}} 

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Event } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/events', async (req, res) => {
+router.get('/event', async (req, res) => {
   try {
     const eventData = await Event.findAll();
     const events = eventData.map((event) => event.get({ plain: true }));
@@ -26,7 +26,7 @@ router.post('/event', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('event/:id', withAuth, async (req, res) => {
   try {
     const EventData = await Event.destroy({
       where: {

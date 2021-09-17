@@ -1,7 +1,7 @@
 let dateEl = document.querySelector('.date');
 let dayEl =  document.querySelector('.day');
 let monthEl =  document.querySelector('.month');
-const Handlebars = require("Handlebars")
+const hbs = require("Handlebars")
 
 async function startTime() {
     var now = moment();
@@ -17,9 +17,7 @@ async function startTime() {
 
 startTime(); 
 
-Handlebars.registerHelper('loud', function (aString) {
-    return aString.toUpperCase()
-})
+
 const eventForm = async (e) => {
     e.preventDefault();
     const date = document.querySelector("#date").value.trim();
