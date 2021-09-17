@@ -5,9 +5,11 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth, async (req, res) => {
   try {
     // Get all projects and JOIN with user data
-    const eventData = await Event.findAll();
-
-    // // Serialize data so the template can read it
+    const eventData = await Event.findAll({
+      where: {
+        user_id: req.session.user_id
+      }
+    });
     const events = eventData.map((event) => event.get({ plain: true }));
 
     res.render('homepage', { events, logged_in: req.session.logged_in });
