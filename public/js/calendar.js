@@ -70,28 +70,28 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelector('#event-form').addEventListener('submit', eventForm);
 document.querySelector('#delete-form').addEventListener('click', deleteEvent);
 
-async function Test() {
+// New post
+async function postNew() {
     const headers = await fetch('/Event');
     const events = await headers.json();
     const eventData = await events.map((event) => ({
-        html: `<div class='event'>
-    <div class='event-desc'>
-        ${event.event_name}
-    </div>
-    </div>`,
+        html: `<div class='date'>${event.day_of_month}</div>
+        <div class='event'>
+        <div class='event-desc'>
+            ${event.event_name}
+        </div>
+        </div>`,
         day_of_month: event.day_of_month,
     }));
-    console.log(eventData);
     listEl.forEach((element) => {
         let cellData = element.id;
-        console.log(cellData);
         for (let i = 0; i < eventData.length; i++) {
         const event = eventData[i];
-        if ((event.day_of_month = element.id)) {
-            element.append(event.html);
+        if (event.day_of_month == cellData) {
+            element.innerHTML = event.html;
         }
         }
     });
 }
 
-Test();
+postNew();
