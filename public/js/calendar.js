@@ -2,6 +2,7 @@ let dateEl = document.querySelector('.date');
 let dayEl = document.querySelector('.day');
 let monthEl = document.querySelector('.month');
 let listEl = document.querySelectorAll('li');
+let updateTextEl = document.querySelectorAll('#update_text');
 
 async function startTime() {
   var now = moment();
@@ -16,6 +17,7 @@ async function startTime() {
 
 startTime();
 
+// New post
 const eventForm = async (e) => {
   e.preventDefault();
   const date = document.querySelector('#date').value.trim();
@@ -41,55 +43,6 @@ const eventForm = async (e) => {
   console.log(events);
 };
 
-//Delete event
-const deleteEvent = async (event) => {
-  event.preventDefault();
-
-  console.log(event.target);
-  console.log(event.target.name);
-  if (event.target.hasAttribute('name')) {
-    const id = event.target.getAttribute('name');
-    console.log(id);
-    const response = await fetch(`/api/calendar/event/${id}`, {
-      method: 'DELETE',
-    });
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to delete project');
-    }
-  }
-};
-//Update event
-const updateEvent = async (event) => {
-  event.preventDefault();
-
-  console.log(event.target);
-  console.log(event.target.name);
-  if (event.target.hasAttribute('name')) {
-    const id = event.target.getAttribute('name');
-    console.log(id);
-    const response = await fetch(`/api/calendar/event/${id}`, {
-      method: 'DELETE',
-    });
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to delete project');
-    }
-  }
-};
-document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.fixed-action-btn');
-  var instances = M.FloatingActionButton.init(elems, {
-    direction: 'left',
-  });
-});
-document.querySelector('#event-form').addEventListener('submit', eventForm);
-document.querySelector('#delete-form').addEventListener('click', deleteEvent);
-document.querySelector('#update-form').addEventListener('click', updateEvent);
-
-// New post
 async function postNew() {
   const headers = await fetch('/Event');
   const events = await headers.json();
@@ -114,3 +67,60 @@ async function postNew() {
 }
 
 postNew();
+
+//Delete event
+const deleteEvent = async (event) => {
+  event.preventDefault();
+
+  console.log(event.target);
+  console.log(event.target.name);
+  if (event.target.hasAttribute('name')) {
+    const id = event.target.getAttribute('name');
+    console.log(id);
+    const response = await fetch(`/api/calendar/event/${id}`, {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to delete project');
+    }
+  }
+};
+
+//Update event
+const updateEvent = async (event) => {
+  event.preventDefault();
+
+  console.log(event.target);
+  console.log(event.target.name);
+  if (event.target.hasAttribute('name')) {
+    const id = event.target.getAttribute('name');
+    console.log(id);
+    const res = await fetch(`/api/calendar/event/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        event_name: updateTextEl.value,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (res.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to update project');
+    }
+  }
+};
+
+//materialize button function
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'left',
+  });
+});
+
+//form buttons
+document.querySelector('#event-form').addEventListener('submit', eventForm);
+document.querySelector('#delete-form').addEventListener('click', deleteEvent);
+document.querySelector('#update-form').addEventListener('click', updateEvent);
