@@ -20,8 +20,8 @@ startTime();
 // New post
 const eventForm = async (e) => {
   e.preventDefault();
-  const date = document.querySelector('#date').value.trim();
-  const event = document.querySelector('#input_text').value.trim();
+  const date = document.querySelector('.date').value.trim();
+  const event = document.querySelector('.input_text').value.trim();
   if (date && event) {
     console.log(event, date);
     const res = await fetch('/api/calendar/event', {
@@ -42,7 +42,7 @@ const eventForm = async (e) => {
   const events = await headers.json();
   console.log(events);
 };
-
+//display event
 async function postNew() {
   const headers = await fetch('/Event');
   const events = await headers.json();

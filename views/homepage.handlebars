@@ -70,7 +70,6 @@
       <h4>Update an Event</h4>
       <form id='update-form'>
         {{#each events}}
-
           <p>Event: {{this.event_name}} </p>
           <input
             id='update_text'
@@ -79,12 +78,7 @@
             data-length='25'
           />
           <label for='update_text' type='text'>Event Name</label>
-          <button
-            type='submit'
-            class='updatebtn'
-            name='{{this.id}}'
-          >Update</button>
-
+          <button type='submit' class='updatebtn' name='{{this.id}}'>Update</button>
         {{/each}}
         <div class='modal-footer'>
           <a
