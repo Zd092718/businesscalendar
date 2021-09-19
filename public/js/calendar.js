@@ -2,7 +2,7 @@ let dateEl = document.querySelector('.date');
 let dayEl = document.querySelector('.day');
 let monthEl = document.querySelector('.month');
 let listEl = document.querySelectorAll('li');
-let updateTextEl = document.querySelectorAll('#update_text');
+// const updateTextEl = document.querySelector('#update_text');
 
 async function startTime() {
   var now = moment();
@@ -20,8 +20,8 @@ startTime();
 // New post
 const eventForm = async (e) => {
   e.preventDefault();
-  const date = document.querySelector('.date').value.trim();
-  const event = document.querySelector('.input_text').value.trim();
+  const date = document.querySelector('#date').value.trim();
+  const event = document.querySelector('#input_text').value.trim();
   if (date && event) {
     console.log(event, date);
     const res = await fetch('/api/calendar/event', {
@@ -71,7 +71,7 @@ postNew();
 //Delete event
 const deleteEvent = async (event) => {
   event.preventDefault();
-
+  event.stopPropagation();
   console.log(event.target);
   console.log(event.target.name);
   if (event.target.hasAttribute('name')) {
@@ -91,12 +91,12 @@ const deleteEvent = async (event) => {
 //Update event
 const updateEvent = async (event) => {
   event.preventDefault();
-
+  event.stopPropagation();
   console.log(event.target);
-  console.log(event.target.name);
+  console.log("PUT")
   if (event.target.hasAttribute('name')) {
     const id = event.target.getAttribute('name');
-    console.log(id);
+    const updateTextEl = document.querySelector(`#update_text${id}`);
     const res = await fetch(`/api/calendar/event/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -124,3 +124,5 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelector('#event-form').addEventListener('submit', eventForm);
 document.querySelector('#delete-form').addEventListener('click', deleteEvent);
 document.querySelector('#update-form').addEventListener('click', updateEvent);
+// document.querySelector('.updatebtn').addEventListener('click', updateEvent);
+

@@ -72,7 +72,7 @@
         {{#each events}}
           <p>Event: {{this.event_name}} </p>
           <input
-            id='update_text'
+            id='update_text{{this.id}}'
             type='text'
             class='materialize-textarea'
             data-length='25'
