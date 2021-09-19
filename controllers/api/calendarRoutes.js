@@ -48,10 +48,7 @@ router.delete('/event/:id', withAuth, async (req, res) => {
 
 router.put('/event/:id', withAuth, async (req, res) => {
   try {
-    const EventData = await Event.update(
-      {
-        event_name: req.body.event_name,
-      },
+    const EventData = await Event.update( req.body,
       {
         where: {
           id: req.params.id,

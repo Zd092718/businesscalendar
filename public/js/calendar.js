@@ -2,7 +2,6 @@ let dateEl = document.querySelector('.date');
 let dayEl = document.querySelector('.day');
 let monthEl = document.querySelector('.month');
 let listEl = document.querySelectorAll('li');
-let updateTextEl = document.querySelectorAll('#update_text');
 
 async function startTime() {
   var now = moment();
@@ -10,8 +9,6 @@ async function startTime() {
   var year = now.year();
   var startOfMonth = moment(now).startOf('month');
   var endOfMonth = moment(now).endOf('month');
-  // console.log(startOfMonth);
-  // console.log(endOfMonth);
   monthEl.append(now.format('MMMM YYYY'));
 }
 
@@ -42,7 +39,7 @@ const eventForm = async (e) => {
   const events = await headers.json();
   console.log(events);
 };
-
+//display event
 async function postNew() {
   const headers = await fetch('/Event');
   const events = await headers.json();
@@ -71,12 +68,9 @@ postNew();
 //Delete event
 const deleteEvent = async (event) => {
   event.preventDefault();
-
-  console.log(event.target);
-  console.log(event.target.name);
+  event.stopPropagation();
   if (event.target.hasAttribute('name')) {
     const id = event.target.getAttribute('name');
-    console.log(id);
     const response = await fetch(`/api/calendar/event/${id}`, {
       method: 'DELETE',
     });
@@ -91,12 +85,10 @@ const deleteEvent = async (event) => {
 //Update event
 const updateEvent = async (event) => {
   event.preventDefault();
-
-  console.log(event.target);
-  console.log(event.target.name);
+  event.stopPropagation();
   if (event.target.hasAttribute('name')) {
     const id = event.target.getAttribute('name');
-    console.log(id);
+    const updateTextEl = document.querySelector(`#update_text${id}`);
     const res = await fetch(`/api/calendar/event/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -124,3 +116,5 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelector('#event-form').addEventListener('submit', eventForm);
 document.querySelector('#delete-form').addEventListener('click', deleteEvent);
 document.querySelector('#update-form').addEventListener('click', updateEvent);
+// document.querySelector('.updatebtn').addEventListener('click', updateEvent);
+
